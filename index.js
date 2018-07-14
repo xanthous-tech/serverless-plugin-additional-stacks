@@ -296,9 +296,7 @@ class AdditionalStacksPlugin {
       'CloudFormation',
       'describeStacks', {
         StackName: fullStackName,
-      },
-      this.options.stage,
-      this.options.region
+      }
     )
     .then(response => {
       return response.Stacks && response.Stacks[0]
@@ -332,9 +330,7 @@ class AdditionalStacksPlugin {
     return this.provider.request(
       'CloudFormation',
       'createStack',
-      params,
-      this.options.stage,
-      this.options.region
+      params
     )
     .then(() => {
       return this.waitForStack(stackName, fullStackName, 'create')
@@ -357,9 +353,7 @@ class AdditionalStacksPlugin {
     return this.provider.request(
       'CloudFormation',
       'updateStack',
-      params,
-      this.options.stage,
-      this.options.region
+      params
     )
     .then(() => {
       this.serverless.cli.log('Updating additional stack ' + stackName + '...')
@@ -385,9 +379,7 @@ class AdditionalStacksPlugin {
       'CloudFormation',
       'deleteStack', {
         StackName: fullStackName,
-      },
-      this.options.stage,
-      this.options.region
+      }
     )
     .then(() => {
       return this.waitForStack(stackName, fullStackName, 'delete')
